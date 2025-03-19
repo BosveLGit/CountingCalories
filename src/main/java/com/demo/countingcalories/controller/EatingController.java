@@ -1,17 +1,14 @@
 package com.demo.countingcalories.controller;
 
-import com.demo.countingcalories.dto.DailyReportDTO;
 import com.demo.countingcalories.dto.EatingAddUpdateDTO;
 import com.demo.countingcalories.model.entity.Eating;
 import com.demo.countingcalories.service.EatingService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/eatings")

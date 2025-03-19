@@ -3,7 +3,6 @@ package com.demo.countingcalories.model.entity;
 import com.demo.countingcalories.model.enums.Gender;
 import com.demo.countingcalories.model.enums.UserPurpose;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter

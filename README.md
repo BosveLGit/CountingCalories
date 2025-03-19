@@ -29,110 +29,35 @@
 
 ## Описание эндпоинтов
 
-### Пользователи
-
-- **Получить всех пользователей**
-  ```http
-  GET /users
-  ```
-
-- **Получить пользователя по ID**
-  ```http
-  GET /users/{id}
-  ```
-
-- **Создать пользователя**
-  ```http
-  POST /users
-  ```
-
-- **Редактировать пользователя**
-  ```http
-  PUT /users/{id}
-  ```
-
-- **Удалить пользователя**
-  ```http
-  DELETE /users/{id}
-  ```
-
-- **Получить дневную норму калорий пользователя**
-  ```http
-  GET /users/{id}/calories
-  ```
-
-- **Проверить норму потребленных калорий пользователем за день**
-  ```http
-  GET /users/{id}/eatings/check_calories?date=YYYY-MM-DD
-  ```
-
-- **Получить приемы пищи пользователя за день**
-  ```http
-  GET /users/{id}/eatings?date=YYYY-MM-DD
-  ```
-
-- **ППолучить историю приемов пищи пользователя**
-  ```http
-  GET /users/{id}/eatings/history?page={page}&size={size}&start_date=YYYY-MM-DD&end_date=YYYY-MM-DD
-  ```
+### **Пользователи**
+- `GET /users` - Получить всех пользователей
+- `GET /users/{id}` - Получить пользователя по ID
+- `POST /users` - Создать пользователя
+- `PUT /users/{id}` - Редактировать пользователя
+- `DELETE /users/{id}` - Удалить пользователя
+- `GET /users/{id}/calories` - Получить дневную норму калорий пользователя
+- `GET /users/{id}/eatings/check_calories?date=YYYY-MM-DD` - Проверить норму потребленных калорий за день
+- `GET /users/{id}/eatings?date=YYYY-MM-DD` - Получить приемы пищи пользователя за день
+- `GET /users/{id}/eatings/history?page={page}&size={size}&start_date=YYYY-MM-DD&end_date=YYYY-MM-DD` - Получить историю приемов пищи пользователя
 
 ---
 
-### Приемы пищи
-
-- **Получить все приемы пищи**
-  ```http
-  GET /eatings
-  ```
-
-- **Получить прием пищи по ID**
-  ```http
-  GET /eatings/{id}
-  ```
-
-- **Добавить прием пищи**
-  ```http
-  POST /eatings
-  ```
-
-- **Редактировать прием пищи**
-  ```http
-  PUT /eatings/{id}
-  ```
-  
-- **Удалить прием пищи**
-  ```http
-  DELETE /eatings/{id}
-  ```
+### **Приемы пищи**
+- `GET /eatings` - Получить все приемы пищи
+- `GET /eatings/{id}` - Получить прием пищи по ID
+- `POST /eatings` - Добавить прием пищи
+- `PUT /eatings/{id}` - Редактировать прием пищи
+- `DELETE /eatings/{id}` - Удалить прием пищи
 
 ---
 
-### Блюда
+### **Блюда**
+- `GET /dishes` - Получить все блюда
+- `GET /dishes/{id}` - Получить блюдо по ID
+- `POST /dishes` - Добавить блюдо
+- `PUT /dishes/{id}` - Редактировать блюдо
+- `DELETE /dishes/{id}` - Удалить блюдо
 
-- **Получить все блюда**
-  ```http
-  GET /dishes
-  ```
-
-- **Получить блюдо по ID**
-  ```http
-  GET /dishes/{id}
-  ```
-
-- **Добавить блюдо**
-  ```http
-  POST /dishes
-  ```
-
-- **Редактировать блюдо**
-  ```http
-  PUT /dishes/{id}
-  ```
-
-- **Удалить блюдо**
-  ```http
-  DELETE /dishes/{id}
-  ```
 
 ## Тестирование
 В проекте есть юнит-тесты, проверяющие:
