@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface EatingRepositoryDAO extends JpaRepository<Eating, Long> {
 
-    Page<Eating> findByUserIdAndDateBetween(Long userId, LocalDate dateAfter, LocalDate dateBefore, Pageable pageable);
+    Page<Eating> findByUserIdAndDateBetween(Long userId, LocalDateTime dateAfter, LocalDateTime dateBefore, Pageable pageable);
 
     Page<Eating> findByUserId(Long userId, Pageable pageable);
 

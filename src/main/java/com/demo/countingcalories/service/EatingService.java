@@ -83,7 +83,9 @@ public class EatingService {
     public Page<Eating> getEatingHistory(Long userId, LocalDate startDate, LocalDate endDate, int page, int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         if (startDate != null && endDate != null) {
-            return eatingRepository.findByUserIdAndDateBetween(userId, startDate, endDate, pageRequest);
+            LocalDateTime day_start = startDate.atStartOfDay();
+            LocalDateTime day_end = endDate.atTime(23, 59, 59);
+            return eatingRepository.findByUserIdAndDateBetween(userId, day_start, day_end, pageRequest);
         }
         return eatingRepository.findByUserId(userId, pageRequest);
     }
