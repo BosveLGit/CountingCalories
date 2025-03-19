@@ -40,8 +40,6 @@
 - `GET /users/{id}/eatings?date=YYYY-MM-DD` - Получить приемы пищи пользователя за день
 - `GET /users/{id}/eatings/history?page={page}&size={size}&start_date=YYYY-MM-DD&end_date=YYYY-MM-DD` - Получить историю приемов пищи пользователя
 
----
-
 ### **Приемы пищи**
 - `GET /eatings` - Получить все приемы пищи
 - `GET /eatings/{id}` - Получить прием пищи по ID
@@ -49,7 +47,6 @@
 - `PUT /eatings/{id}` - Редактировать прием пищи
 - `DELETE /eatings/{id}` - Удалить прием пищи
 
----
 
 ### **Блюда**
 - `GET /dishes` - Получить все блюда
