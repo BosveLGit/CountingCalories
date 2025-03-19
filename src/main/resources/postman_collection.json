@@ -1,0 +1,3053 @@
+{
+	"info": {
+		"_postman_id": "9193547b-586b-4629-9025-1600e6a1a745",
+		"name": "API \"Счетчик калорий\"",
+		"description": "API сервиса для отслеживания дневной нормы калорий.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28989495"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "eatings",
+							"item": [
+								{
+									"name": "history",
+									"item": [
+										{
+											"name": "Показать историю приемов пищи пользователя",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:id/eatings/history?page=0&size=10&start_date=<string>&end_date=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":id",
+														"eatings",
+														"history"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														},
+														{
+															"key": "start_date",
+															"value": "<string>"
+														},
+														{
+															"key": "end_date",
+															"value": "<string>"
+														}
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "<long>",
+															"description": "(Required) "
+														}
+													]
+												},
+												"description": "Показывает все приемы пищи пользователя постранично в заданном интервале"
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/users/:id/eatings/history?page=0&size=10&start_date=<string>&end_date=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"users",
+																":id",
+																"eatings",
+																"history"
+															],
+															"query": [
+																{
+																	"key": "page",
+																	"value": "0"
+																},
+																{
+																	"key": "size",
+																	"value": "10"
+																},
+																{
+																	"key": "start_date",
+																	"value": "<string>"
+																},
+																{
+																	"key": "end_date",
+																	"value": "<string>"
+																}
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"totalElements\": \"<long>\",\n  \"totalPages\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"content\": [\n    {\n      \"id\": \"<long>\",\n      \"date\": \"<dateTime>\",\n      \"user\": {\n        \"name\": \"<string>\",\n        \"id\": \"<long>\",\n        \"email\": \"<string>\",\n        \"age\": \"<integer>\",\n        \"weight\": \"<double>\",\n        \"height\": \"<double>\",\n        \"purpose\": \"WEIGHTLOSS\",\n        \"gender\": \"MALE\",\n        \"dailyCalories\": \"<integer>\"\n      },\n      \"dishes\": [\n        {\n          \"name\": \"<string>\",\n          \"id\": \"<long>\",\n          \"calories\": \"<integer>\",\n          \"proteins\": \"<integer>\",\n          \"fats\": \"<integer>\",\n          \"carbohydrates\": \"<integer>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"id\": \"<long>\",\n          \"calories\": \"<integer>\",\n          \"proteins\": \"<integer>\",\n          \"fats\": \"<integer>\",\n          \"carbohydrates\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<long>\",\n      \"date\": \"<dateTime>\",\n      \"user\": {\n        \"name\": \"<string>\",\n        \"id\": \"<long>\",\n        \"email\": \"<string>\",\n        \"age\": \"<integer>\",\n        \"weight\": \"<double>\",\n        \"height\": \"<double>\",\n        \"purpose\": \"MAINTENANCE\",\n        \"gender\": \"FEMALE\",\n        \"dailyCalories\": \"<integer>\"\n      },\n      \"dishes\": [\n        {\n          \"name\": \"<string>\",\n          \"id\": \"<long>\",\n          \"calories\": \"<integer>\",\n          \"proteins\": \"<integer>\",\n          \"fats\": \"<integer>\",\n          \"carbohydrates\": \"<integer>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"id\": \"<long>\",\n          \"calories\": \"<integer>\",\n          \"proteins\": \"<integer>\",\n          \"fats\": \"<integer>\",\n          \"carbohydrates\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"number\": \"<integer>\",\n  \"sort\": {\n    \"empty\": \"<boolean>\",\n    \"sorted\": \"<boolean>\",\n    \"unsorted\": \"<boolean>\"\n  },\n  \"first\": \"<boolean>\",\n  \"last\": \"<boolean>\",\n  \"numberOfElements\": \"<integer>\",\n  \"pageable\": {\n    \"offset\": \"<long>\",\n    \"sort\": {\n      \"empty\": \"<boolean>\",\n      \"sorted\": \"<boolean>\",\n      \"unsorted\": \"<boolean>\"\n    },\n    \"paged\": \"<boolean>\",\n    \"pageSize\": \"<integer>\",\n    \"pageNumber\": \"<integer>\",\n    \"unpaged\": \"<boolean>\"\n  },\n  \"empty\": \"<boolean>\"\n}"
+												},
+												{
+													"name": "Not Found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/users/:id/eatings/history?page=0&size=10&start_date=<string>&end_date=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"users",
+																":id",
+																"eatings",
+																"history"
+															],
+															"query": [
+																{
+																	"key": "page",
+																	"value": "0"
+																},
+																{
+																	"key": "size",
+																	"value": "10"
+																},
+																{
+																	"key": "start_date",
+																	"value": "<string>"
+																},
+																{
+																	"key": "end_date",
+																	"value": "<string>"
+																}
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+												},
+												{
+													"name": "Internal Server Error",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/users/:id/eatings/history?page=0&size=10&start_date=<string>&end_date=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"users",
+																":id",
+																"eatings",
+																"history"
+															],
+															"query": [
+																{
+																	"key": "page",
+																	"value": "0"
+																},
+																{
+																	"key": "size",
+																	"value": "10"
+																},
+																{
+																	"key": "start_date",
+																	"value": "<string>"
+																},
+																{
+																	"key": "end_date",
+																	"value": "<string>"
+																}
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Internal Server Error",
+													"code": 500,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "check_calories",
+									"item": [
+										{
+											"name": "Проверить норму потребленных калорий",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:id/eatings/check_calories?date=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":id",
+														"eatings",
+														"check_calories"
+													],
+													"query": [
+														{
+															"key": "date",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "<long>",
+															"description": "(Required) "
+														}
+													]
+												},
+												"description": "Проверяет норму потребленных калорий пользователей за указанный день"
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/users/:id/eatings/check_calories?date=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"users",
+																":id",
+																"eatings",
+																"check_calories"
+															],
+															"query": [
+																{
+																	"key": "date",
+																	"value": "<string>",
+																	"description": "(Required) "
+																}
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "<boolean>"
+												},
+												{
+													"name": "Not Found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/users/:id/eatings/check_calories?date=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"users",
+																":id",
+																"eatings",
+																"check_calories"
+															],
+															"query": [
+																{
+																	"key": "date",
+																	"value": "<string>",
+																	"description": "(Required) "
+																}
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+												},
+												{
+													"name": "Internal Server Error",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/users/:id/eatings/check_calories?date=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"users",
+																":id",
+																"eatings",
+																"check_calories"
+															],
+															"query": [
+																{
+																	"key": "date",
+																	"value": "<string>",
+																	"description": "(Required) "
+																}
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Internal Server Error",
+													"code": 500,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "Показать приемы пищи пользователя за день",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id/eatings?date=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id",
+												"eatings"
+											],
+											"query": [
+												{
+													"key": "date",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "<long>",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Показывает приемы пищи пользователя за день и суммарные потребленные калории"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:id/eatings?date=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":id",
+														"eatings"
+													],
+													"query": [
+														{
+															"key": "date",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"eating\": [\n    {\n      \"id\": \"<long>\",\n      \"date\": \"<dateTime>\",\n      \"user\": {\n        \"name\": \"<string>\",\n        \"id\": \"<long>\",\n        \"email\": \"<string>\",\n        \"age\": \"<integer>\",\n        \"weight\": \"<double>\",\n        \"height\": \"<double>\",\n        \"purpose\": \"WEIGHTLOSS\",\n        \"gender\": \"MALE\",\n        \"dailyCalories\": \"<integer>\"\n      },\n      \"dishes\": [\n        {\n          \"name\": \"<string>\",\n          \"id\": \"<long>\",\n          \"calories\": \"<integer>\",\n          \"proteins\": \"<integer>\",\n          \"fats\": \"<integer>\",\n          \"carbohydrates\": \"<integer>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"id\": \"<long>\",\n          \"calories\": \"<integer>\",\n          \"proteins\": \"<integer>\",\n          \"fats\": \"<integer>\",\n          \"carbohydrates\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<long>\",\n      \"date\": \"<dateTime>\",\n      \"user\": {\n        \"name\": \"<string>\",\n        \"id\": \"<long>\",\n        \"email\": \"<string>\",\n        \"age\": \"<integer>\",\n        \"weight\": \"<double>\",\n        \"height\": \"<double>\",\n        \"purpose\": \"MAINTENANCE\",\n        \"gender\": \"MALE\",\n        \"dailyCalories\": \"<integer>\"\n      },\n      \"dishes\": [\n        {\n          \"name\": \"<string>\",\n          \"id\": \"<long>\",\n          \"calories\": \"<integer>\",\n          \"proteins\": \"<integer>\",\n          \"fats\": \"<integer>\",\n          \"carbohydrates\": \"<integer>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"id\": \"<long>\",\n          \"calories\": \"<integer>\",\n          \"proteins\": \"<integer>\",\n          \"fats\": \"<integer>\",\n          \"carbohydrates\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"consumedCalories\": \"<integer>\",\n  \"dailyCalorieRequirement\": \"<integer>\"\n}"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:id/eatings?date=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":id",
+														"eatings"
+													],
+													"query": [
+														{
+															"key": "date",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+										},
+										{
+											"name": "Internal Server Error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:id/eatings?date=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":id",
+														"eatings"
+													],
+													"query": [
+														{
+															"key": "date",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "calories",
+							"item": [
+								{
+									"name": "Получить дневную норму калорий пользователя",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id/calories",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id",
+												"calories"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "<long>",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Возвращает дневную норму калорий по указанному идентификатору пользователя"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:id/calories",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":id",
+														"calories"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{}"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:id/calories",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":id",
+														"calories"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+										},
+										{
+											"name": "Internal Server Error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:id/calories",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":id",
+														"calories"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Получить пользователя по ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Возвращает пользователя по указанному идентификатору"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<long>\",\n  \"email\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"weight\": \"<double>\",\n  \"height\": \"<double>\",\n  \"purpose\": \"WEIGHTLOSS\",\n  \"gender\": \"FEMALE\",\n  \"dailyCalories\": \"<integer>\"\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Редактировать пользователя",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"height\": \"<double>\",\n  \"weight\": \"<double>\",\n  \"purpose\": \"MAINTENANCE\",\n  \"gender\": \"FEMALE\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Обновляет данные пользователя по указанному идентификатору"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"height\": \"<double>\",\n  \"weight\": \"<double>\",\n  \"purpose\": \"MAINTENANCE\",\n  \"gender\": \"FEMALE\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<long>\",\n  \"email\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"weight\": \"<double>\",\n  \"height\": \"<double>\",\n  \"purpose\": \"WEIGHTLOSS\",\n  \"gender\": \"FEMALE\",\n  \"dailyCalories\": \"<integer>\"\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"height\": \"<double>\",\n  \"weight\": \"<double>\",\n  \"purpose\": \"MAINTENANCE\",\n  \"gender\": \"FEMALE\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"height\": \"<double>\",\n  \"weight\": \"<double>\",\n  \"purpose\": \"MAINTENANCE\",\n  \"gender\": \"FEMALE\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Удалить пользователя",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Удаляет пользователя по указанному идентификатору"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Получить всех пользователей",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Возвращает список всех пользователей"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"name\": \"<string>\",\n    \"id\": \"<long>\",\n    \"email\": \"<string>\",\n    \"age\": \"<integer>\",\n    \"weight\": \"<double>\",\n    \"height\": \"<double>\",\n    \"purpose\": \"MAINTENANCE\",\n    \"gender\": \"MALE\",\n    \"dailyCalories\": \"<integer>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"id\": \"<long>\",\n    \"email\": \"<string>\",\n    \"age\": \"<integer>\",\n    \"weight\": \"<double>\",\n    \"height\": \"<double>\",\n    \"purpose\": \"WEIGHTLOSS\",\n    \"gender\": \"MALE\",\n    \"dailyCalories\": \"<integer>\"\n  }\n]"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+						},
+						{
+							"name": "Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Создать пользователя",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"height\": \"<double>\",\n  \"weight\": \"<double>\",\n  \"purpose\": \"MAINTENANCE\",\n  \"gender\": \"FEMALE\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Добавляет нового пользователя на основе предоставленных данных"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"height\": \"<double>\",\n  \"weight\": \"<double>\",\n  \"purpose\": \"MAINTENANCE\",\n  \"gender\": \"FEMALE\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<long>\",\n  \"email\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"weight\": \"<double>\",\n  \"height\": \"<double>\",\n  \"purpose\": \"WEIGHTLOSS\",\n  \"gender\": \"FEMALE\",\n  \"dailyCalories\": \"<integer>\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"height\": \"<double>\",\n  \"weight\": \"<double>\",\n  \"purpose\": \"MAINTENANCE\",\n  \"gender\": \"FEMALE\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+						},
+						{
+							"name": "Internal Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"height\": \"<double>\",\n  \"weight\": \"<double>\",\n  \"purpose\": \"MAINTENANCE\",\n  \"gender\": \"FEMALE\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "eatings",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Получить прием пищи по ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/eatings/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"eatings",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Возвращает указанный прием пищи по указанному идентификатору"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/eatings/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"eatings",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<long>\",\n  \"date\": \"<dateTime>\",\n  \"user\": {\n    \"name\": \"<string>\",\n    \"id\": \"<long>\",\n    \"email\": \"<string>\",\n    \"age\": \"<integer>\",\n    \"weight\": \"<double>\",\n    \"height\": \"<double>\",\n    \"purpose\": \"WEIGHTGAIN\",\n    \"gender\": \"FEMALE\",\n    \"dailyCalories\": \"<integer>\"\n  },\n  \"dishes\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<long>\",\n      \"calories\": \"<integer>\",\n      \"proteins\": \"<integer>\",\n      \"fats\": \"<integer>\",\n      \"carbohydrates\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<long>\",\n      \"calories\": \"<integer>\",\n      \"proteins\": \"<integer>\",\n      \"fats\": \"<integer>\",\n      \"carbohydrates\": \"<integer>\"\n    }\n  ]\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/eatings/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"eatings",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/eatings/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"eatings",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Редактировать прием пищи",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"date\": \"yyyy-MM-dd HH:mm:ss\",\n  \"dishesId\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"userId\": \"<long>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/eatings/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"eatings",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Обновляет данные приема пищи по указанному идентификатору"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"date\": \"yyyy-MM-dd HH:mm:ss\",\n  \"dishesId\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"userId\": \"<long>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/eatings/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"eatings",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<long>\",\n  \"date\": \"<dateTime>\",\n  \"user\": {\n    \"name\": \"<string>\",\n    \"id\": \"<long>\",\n    \"email\": \"<string>\",\n    \"age\": \"<integer>\",\n    \"weight\": \"<double>\",\n    \"height\": \"<double>\",\n    \"purpose\": \"WEIGHTGAIN\",\n    \"gender\": \"FEMALE\",\n    \"dailyCalories\": \"<integer>\"\n  },\n  \"dishes\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<long>\",\n      \"calories\": \"<integer>\",\n      \"proteins\": \"<integer>\",\n      \"fats\": \"<integer>\",\n      \"carbohydrates\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<long>\",\n      \"calories\": \"<integer>\",\n      \"proteins\": \"<integer>\",\n      \"fats\": \"<integer>\",\n      \"carbohydrates\": \"<integer>\"\n    }\n  ]\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"date\": \"yyyy-MM-dd HH:mm:ss\",\n  \"dishesId\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"userId\": \"<long>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/eatings/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"eatings",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"date\": \"yyyy-MM-dd HH:mm:ss\",\n  \"dishesId\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"userId\": \"<long>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/eatings/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"eatings",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Удалить прием пищи",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/eatings/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"eatings",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Удаляет прием пищи по указанному идентификатору"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/eatings/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"eatings",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/eatings/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"eatings",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/eatings/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"eatings",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Добавить прием пищи",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"yyyy-MM-dd HH:mm:ss\",\n  \"dishesId\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"userId\": \"<long>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/eatings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"eatings"
+							]
+						},
+						"description": "Добавляет прием пищи на основе предоставленных данных"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"date\": \"yyyy-MM-dd HH:mm:ss\",\n  \"dishesId\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"userId\": \"<long>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/eatings",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"eatings"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<long>\",\n  \"date\": \"<dateTime>\",\n  \"user\": {\n    \"name\": \"<string>\",\n    \"id\": \"<long>\",\n    \"email\": \"<string>\",\n    \"age\": \"<integer>\",\n    \"weight\": \"<double>\",\n    \"height\": \"<double>\",\n    \"purpose\": \"WEIGHTGAIN\",\n    \"gender\": \"FEMALE\",\n    \"dailyCalories\": \"<integer>\"\n  },\n  \"dishes\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<long>\",\n      \"calories\": \"<integer>\",\n      \"proteins\": \"<integer>\",\n      \"fats\": \"<integer>\",\n      \"carbohydrates\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<long>\",\n      \"calories\": \"<integer>\",\n      \"proteins\": \"<integer>\",\n      \"fats\": \"<integer>\",\n      \"carbohydrates\": \"<integer>\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"date\": \"yyyy-MM-dd HH:mm:ss\",\n  \"dishesId\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"userId\": \"<long>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/eatings",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"eatings"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+						},
+						{
+							"name": "Internal Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"date\": \"yyyy-MM-dd HH:mm:ss\",\n  \"dishesId\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"userId\": \"<long>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/eatings",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"eatings"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "dishes",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Получить блюдо по ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/dishes/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dishes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Возвращает блюдо по указанному идентификатору"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/dishes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"dishes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<long>\",\n  \"calories\": \"<integer>\",\n  \"proteins\": \"<integer>\",\n  \"fats\": \"<integer>\",\n  \"carbohydrates\": \"<integer>\"\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/dishes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"dishes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/dishes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"dishes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Редактировать блюдо",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"calories\": \"<integer>\",\n  \"proteins\": \"<integer>\",\n  \"fats\": \"<integer>\",\n  \"carbohydrates\": \"<integer>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/dishes/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dishes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Обновляет данные блюда по указанному идентификатору"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"calories\": \"<integer>\",\n  \"proteins\": \"<integer>\",\n  \"fats\": \"<integer>\",\n  \"carbohydrates\": \"<integer>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/dishes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"dishes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<long>\",\n  \"calories\": \"<integer>\",\n  \"proteins\": \"<integer>\",\n  \"fats\": \"<integer>\",\n  \"carbohydrates\": \"<integer>\"\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"calories\": \"<integer>\",\n  \"proteins\": \"<integer>\",\n  \"fats\": \"<integer>\",\n  \"carbohydrates\": \"<integer>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/dishes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"dishes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"calories\": \"<integer>\",\n  \"proteins\": \"<integer>\",\n  \"fats\": \"<integer>\",\n  \"carbohydrates\": \"<integer>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/dishes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"dishes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Удалить блюдо",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/dishes/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dishes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Удаляет блюдо по указанному идентификатору"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/dishes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"dishes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/dishes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"dishes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/dishes/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"dishes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Получить список всех блюд",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/dishes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dishes"
+							]
+						},
+						"description": "Возвращает список всех блюд"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/dishes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dishes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"name\": \"<string>\",\n    \"id\": \"<long>\",\n    \"calories\": \"<integer>\",\n    \"proteins\": \"<integer>\",\n    \"fats\": \"<integer>\",\n    \"carbohydrates\": \"<integer>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"id\": \"<long>\",\n    \"calories\": \"<integer>\",\n    \"proteins\": \"<integer>\",\n    \"fats\": \"<integer>\",\n    \"carbohydrates\": \"<integer>\"\n  }\n]"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/dishes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dishes"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+						},
+						{
+							"name": "Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/dishes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dishes"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Добавить блюдо",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"<string>\",\n  \"calories\": \"<integer>\",\n  \"proteins\": \"<integer>\",\n  \"fats\": \"<integer>\",\n  \"carbohydrates\": \"<integer>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/dishes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dishes"
+							]
+						},
+						"description": "Добавляет новое блюдо на основе предоставленных данных"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"calories\": \"<integer>\",\n  \"proteins\": \"<integer>\",\n  \"fats\": \"<integer>\",\n  \"carbohydrates\": \"<integer>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/dishes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dishes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<long>\",\n  \"calories\": \"<integer>\",\n  \"proteins\": \"<integer>\",\n  \"fats\": \"<integer>\",\n  \"carbohydrates\": \"<integer>\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"calories\": \"<integer>\",\n  \"proteins\": \"<integer>\",\n  \"fats\": \"<integer>\",\n  \"carbohydrates\": \"<integer>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/dishes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dishes"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+						},
+						{
+							"name": "Internal Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"calories\": \"<integer>\",\n  \"proteins\": \"<integer>\",\n  \"fats\": \"<integer>\",\n  \"carbohydrates\": \"<integer>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/dishes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dishes"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eae\": \"<string>\",\n  \"Ut_c\": \"<string>\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}

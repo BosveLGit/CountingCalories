@@ -6,6 +6,7 @@ import com.demo.countingcalories.model.entity.Eating;
 import com.demo.countingcalories.service.EatingService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/eating")
+@RequestMapping("/eatings")
 @Tag(name = "Eating", description = "Операции с приемами пищи")
 public class EatingController {
 
@@ -29,60 +30,21 @@ public class EatingController {
         return ResponseEntity.ok(eatingService.getEatingById(id));
     }
 
-    @GetMapping("/{userId}/{date}")
-    @Operation(summary = "Показать приемы пищи пользователя за день",
-            description = "Показывает приемы пищи пользователя за день и суммарные потребленные калории")
-    public ResponseEntity<DailyReportDTO> getDailyReport(
-            @PathVariable Long userId,
-            @PathVariable String date) {
-
-        LocalDate parsedDate = LocalDate.parse(date);
-        DailyReportDTO report = eatingService.getDailyReport(userId, parsedDate);
-        return ResponseEntity.ok(report);
-    }
-
-    @GetMapping("/eating_history/{userId}")
-    @Operation(summary = "Показать историю приемов пищи пользователя",
-            description = "Показывает все приемы пищи пользователя постранично в заданном интервале")
-    public ResponseEntity<Page<Eating>> getEatingHistory(@PathVariable Long userId,
-                                                         @RequestParam(defaultValue = "0") int page,
-                                                         @RequestParam(defaultValue = "10") int size,
-                                                         @RequestParam(required = false) String  start_date,
-                                                         @RequestParam(required = false) String  end_date) {
-
-        LocalDate startDate = (start_date != null) ? LocalDate.parse(start_date) : null;
-        LocalDate endDate = (end_date != null) ? LocalDate.parse(end_date) : null;
-
-        Page<Eating> eatingHistory = eatingService.getEatingHistory(userId, startDate, endDate, page, size);
-        return ResponseEntity.ok(eatingHistory);
-    }
-
-    @GetMapping("/check_calories/{id}/{date}")
-    @Operation(summary = "Проверить норму потребленных калорий",
-            description = "Проверяет норму потребленных калорий пользователей за указанный день")
-    public ResponseEntity<Boolean> checkDailyCaloriesByIdByDate(@PathVariable Long id,
-                                                                @PathVariable String date) {
-
-        LocalDate reportDate = LocalDate.parse(date);
-        boolean result = eatingService.checkDailyCaloriesByUserIdByDate(id, reportDate);
-        return ResponseEntity.ok(result);
-    }
-
-    @PostMapping("/add")
+    @PostMapping("")
     @Operation(summary = "Добавить прием пищи", description = "Добавляет прием пищи на основе предоставленных данных")
-    public ResponseEntity<Eating> createEating(@RequestBody EatingAddUpdateDTO eatingDTO) {
+    public ResponseEntity<Eating> createEating(@Valid @RequestBody EatingAddUpdateDTO eatingDTO) {
         Eating savedEating = eatingService.createEating(eatingDTO);
         return ResponseEntity.status(201).body(savedEating);
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}")
     @Operation(summary = "Редактировать прием пищи", description = "Обновляет данные приема пищи по указанному идентификатору")
-    public ResponseEntity<Eating> editEating(@PathVariable Long id, @RequestBody EatingAddUpdateDTO eatingDTO) {
+    public ResponseEntity<Eating> editEating(@PathVariable Long id, @Valid @RequestBody EatingAddUpdateDTO eatingDTO) {
         Eating savedEating = eatingService.editEating(id, eatingDTO);
         return ResponseEntity.ok(savedEating);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @Operation(summary = "Удалить прием пищи", description = "Удаляет прием пищи по указанному идентификатору")
     public ResponseEntity<?> deleteEating(@PathVariable Long id) {
         eatingService.deleteEating(id);

@@ -40,48 +40,22 @@ public class EatingService {
 
     public DailyReportDTO getDailyReport(Long userId, LocalDate date) {
 
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+        DailyCaloriesData data = getSumCaloriesByDate(userId, date);
+        return new DailyReportDTO(data.eatingList(), data.totalCalories(), data.dailyCalories());
 
-        LocalDateTime day_start = date.atStartOfDay();
-        LocalDateTime day_end = date.atTime(23, 59, 59);
-
-        List<Eating> eatingList = eatingRepository.findByUserIdAndDateBetween(userId, day_start, day_end);
-
-        int totalCalories = 0;
-
-        for (Eating eating : eatingList) {
-            for (Dish dish : eating.getDishes()) {
-                totalCalories += dish.getCalories();
-            }
-        }
-
-        return new DailyReportDTO(eatingList, totalCalories, user.getDailyCalories());
     }
 
     public boolean checkDailyCaloriesByUserIdByDate(Long userId, LocalDate date) {
 
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
-
-        LocalDateTime day_start = date.atStartOfDay();
-        LocalDateTime day_end = date.atTime(23, 59, 59);
-        List<Eating> eatingList = eatingRepository.findByUserIdAndDateBetween(userId, day_start, day_end);
-
-        int totalCalories = 0;
-
-        for (Eating eating : eatingList) {
-            for (Dish dish : eating.getDishes()) {
-                totalCalories += dish.getCalories();
-            }
-        }
-
-        return totalCalories <= user.getDailyCalories();
+        DailyCaloriesData data = getSumCaloriesByDate(userId, date);
+        return data.totalCalories() <= data.dailyCalories();
 
     }
 
     public Page<Eating> getEatingHistory(Long userId, LocalDate startDate, LocalDate endDate, int page, int size) {
+
         PageRequest pageRequest = PageRequest.of(page, size);
+
         if (startDate != null && endDate != null) {
             LocalDateTime day_start = startDate.atStartOfDay();
             LocalDateTime day_end = endDate.atTime(23, 59, 59);
@@ -142,5 +116,34 @@ public class EatingService {
         fillEatingFromDTO(eating, dto);
         return eatingRepository.save(eating);
     }
+
+    public DailyCaloriesData getSumCaloriesByDate(Long userId, LocalDate date) {
+
+        if (date == null) {
+            throw new IllegalArgumentException("Необходимо заполнить дату");
+        }
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
+
+        LocalDateTime day_start = date.atStartOfDay();
+        LocalDateTime day_end = date.atTime(23, 59, 59);
+        List<Eating> eatingList = eatingRepository.findByUserIdAndDateBetween(userId, day_start, day_end);
+
+        int totalCalories = 0;
+
+        for (Eating eating : eatingList) {
+            List<Dish> dishes = eating.getDishes();
+            if (dishes != null) {
+                for (Dish dish : dishes) {
+                    totalCalories = totalCalories + ((dish != null) ? dish.getCalories() : 0);
+                }
+            }
+        }
+
+        return new DailyCaloriesData(totalCalories, user.getDailyCalories(), eatingList);
+    }
+
+    public record DailyCaloriesData(int totalCalories, int dailyCalories, List<Eating> eatingList) {}
 
 }

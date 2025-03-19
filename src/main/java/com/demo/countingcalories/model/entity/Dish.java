@@ -18,9 +18,7 @@ public class Dish {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Имя блюда не должно быть пустым")
     private String name;
-
     private int calories;
     private int proteins;
     private int fats;

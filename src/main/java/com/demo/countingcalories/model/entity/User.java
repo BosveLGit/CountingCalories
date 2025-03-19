@@ -3,6 +3,7 @@ package com.demo.countingcalories.model.entity;
 import com.demo.countingcalories.model.enums.Gender;
 import com.demo.countingcalories.model.enums.UserPurpose;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter
@@ -18,8 +19,8 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
 
+    private String name;
     private String email;
     private int age;
     private double weight;
