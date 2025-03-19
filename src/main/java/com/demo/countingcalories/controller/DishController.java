@@ -1,5 +1,6 @@
 package com.demo.countingcalories.controller;
 
+import com.demo.countingcalories.dto.DishAddUpdateDTO;
 import com.demo.countingcalories.model.entity.Dish;
 import com.demo.countingcalories.service.DishService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/dish")
@@ -36,15 +36,15 @@ public class DishController {
 
     @PostMapping("/add")
     @Operation(summary = "Добавить блюдо", description = "Добавляет новое блюдо на основе предоставленных данных")
-    public ResponseEntity<Dish> createDish(@RequestBody Dish dish) {
-        Dish savedDish = dishService.createDish(dish);
+    public ResponseEntity<Dish> createDish(@RequestBody DishAddUpdateDTO dishDTO) {
+        Dish savedDish = dishService.createDish(dishDTO);
         return ResponseEntity.status(201).body(savedDish);
     }
 
     @PutMapping("/edit/{id}")
     @Operation(summary = "Редактировать блюдо", description = "Обновляет данные блюда по указанному идентификатору")
-    public ResponseEntity<Dish> editDish(@PathVariable Long id, @RequestBody Dish dish) {
-        Dish savedDish = dishService.editDish(id, dish);
+    public ResponseEntity<Dish> editDish(@PathVariable Long id, @RequestBody DishAddUpdateDTO dishDTO) {
+        Dish savedDish = dishService.editDish(id, dishDTO);
         return ResponseEntity.ok(savedDish);
     }
 

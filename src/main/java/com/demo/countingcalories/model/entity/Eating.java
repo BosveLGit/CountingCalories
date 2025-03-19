@@ -2,7 +2,6 @@ package com.demo.countingcalories.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +20,6 @@ public class Eating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreationTimestamp
     private LocalDateTime date;
 
     @ManyToOne
@@ -30,7 +28,7 @@ public class Eating {
 
     @ManyToMany
     @JoinTable(
-            name = "eating",
+            name = "eating_dishes",
             joinColumns = @JoinColumn(name = "eating_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )

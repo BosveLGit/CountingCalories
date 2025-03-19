@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class CalorieCalculatorService {
 
     public int calculateDailyCalories(
-            int weight, int height, int age, UserPurpose purpose, Gender gender) {
+            double weight, double height, int age, UserPurpose purpose, Gender gender) {
 
         double DailyCalories;
 

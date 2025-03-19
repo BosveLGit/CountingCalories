@@ -1,6 +1,7 @@
 package com.demo.countingcalories.controller;
 
 import com.demo.countingcalories.dto.DailyReportDTO;
+import com.demo.countingcalories.dto.EatingAddUpdateDTO;
 import com.demo.countingcalories.model.entity.Eating;
 import com.demo.countingcalories.service.EatingService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/eating")
@@ -27,12 +27,6 @@ public class EatingController {
     @Operation(summary = "Получить прием пищи по ID", description = "Возвращает указанный прием пищи по указанному идентификатору")
     public ResponseEntity<Eating> getEatingById(@PathVariable Long id) {
         return ResponseEntity.ok(eatingService.getEatingById(id));
-//        Optional<Eating> eating = eatingService.getEatingById(id);
-//        if (eating.isPresent()) {
-//            return ResponseEntity.ok(eating.get());
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
     }
 
     @GetMapping("/{userId}/{date}")
@@ -48,7 +42,8 @@ public class EatingController {
     }
 
     @GetMapping("/eating_history/{userId}")
-    @Operation(summary = "Показать приемы пищи пользователя", description = "Показывает все приемы пищи пользователя постранично")
+    @Operation(summary = "Показать историю приемов пищи пользователя",
+            description = "Показывает все приемы пищи пользователя постранично в заданном интервале")
     public ResponseEntity<Page<Eating>> getEatingHistory(@PathVariable Long userId,
                                                          @RequestParam(defaultValue = "0") int page,
                                                          @RequestParam(defaultValue = "10") int size,
@@ -75,15 +70,15 @@ public class EatingController {
 
     @PostMapping("/add")
     @Operation(summary = "Добавить прием пищи", description = "Добавляет прием пищи на основе предоставленных данных")
-    public ResponseEntity<Eating> createEating(@RequestBody Eating eating) {
-        Eating savedEating = eatingService.createEating(eating);
+    public ResponseEntity<Eating> createEating(@RequestBody EatingAddUpdateDTO eatingDTO) {
+        Eating savedEating = eatingService.createEating(eatingDTO);
         return ResponseEntity.status(201).body(savedEating);
     }
 
     @PutMapping("/edit/{id}")
     @Operation(summary = "Редактировать прием пищи", description = "Обновляет данные приема пищи по указанному идентификатору")
-    public ResponseEntity<Eating> editEating(@PathVariable Long id, @RequestBody Eating eating) {
-        Eating savedEating = eatingService.editEating(id, eating);
+    public ResponseEntity<Eating> editEating(@PathVariable Long id, @RequestBody EatingAddUpdateDTO eatingDTO) {
+        Eating savedEating = eatingService.editEating(id, eatingDTO);
         return ResponseEntity.ok(savedEating);
     }
 

@@ -1,5 +1,6 @@
 package com.demo.countingcalories.service;
 
+import com.demo.countingcalories.dto.UserAddUpdateDTO;
 import com.demo.countingcalories.exception.UserNotFoundException;
 import com.demo.countingcalories.model.dao.UserRepositoryDAO;
 import com.demo.countingcalories.model.entity.User;
@@ -27,35 +28,12 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException(id));
     }
 
-    public User createUser(User user) {
-
-        int dailyCalories = calorieCalculatorService.calculateDailyCalories(
-                user.getWeight(), user.getHeight(), user.getAge(), user.getPurpose(), user.getGender());
-
-        user.setDailyCalories(dailyCalories);
-
-        return userRepository.save(user);
+    public User createUser(UserAddUpdateDTO userDTO) {
+        return createAndFillUser(userDTO);
     }
 
-    public User editUser(Long id, User updatedUser) {
-
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
-
-        user.setName(updatedUser.getName());
-        user.setEmail(updatedUser.getEmail());
-        user.setWeight(updatedUser.getWeight());
-        user.setHeight(updatedUser.getHeight());
-        user.setAge(updatedUser.getAge());
-        user.setPurpose(updatedUser.getPurpose());
-        user.setGender(updatedUser.getGender());
-
-        int dailyCalories = calorieCalculatorService.calculateDailyCalories(
-                user.getWeight(), user.getHeight(), user.getAge(), user.getPurpose(), user.getGender());
-
-        user.setDailyCalories(dailyCalories);
-
-        return userRepository.save(user);
+    public User editUser(Long id, UserAddUpdateDTO updatedUserDTO) {
+        return findAndFillUser(id, updatedUserDTO);
     }
 
     public void deleteUser(Long id) {
@@ -64,5 +42,37 @@ public class UserService {
         }
         userRepository.deleteById(id);
     }
+
+    private User fillUserFromDTO(User user, UserAddUpdateDTO dto) {
+
+        user.setName(dto.getName());
+        user.setEmail(dto.getEmail());
+        user.setWeight(dto.getWeight());
+        user.setHeight(dto.getHeight());
+        user.setAge(dto.getAge());
+        user.setPurpose(dto.getPurpose());
+        user.setGender(dto.getGender());
+
+        int dailyCalories = calorieCalculatorService.calculateDailyCalories(
+                user.getWeight(), user.getHeight(), user.getAge(), user.getPurpose(), user.getGender());
+
+        user.setDailyCalories(dailyCalories);
+
+        return user;
+    }
+
+    public User createAndFillUser(UserAddUpdateDTO dto) {
+        User user = new User();
+        fillUserFromDTO(user, dto);
+        return userRepository.save(user);
+    }
+
+    public User findAndFillUser(Long id, UserAddUpdateDTO dto) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
+        fillUserFromDTO(user, dto);
+        return userRepository.save(user);
+    }
+
 
 }

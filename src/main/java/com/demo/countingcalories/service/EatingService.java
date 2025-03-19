@@ -1,20 +1,23 @@
 package com.demo.countingcalories.service;
 
 import com.demo.countingcalories.dto.DailyReportDTO;
+import com.demo.countingcalories.dto.EatingAddUpdateDTO;
 import com.demo.countingcalories.exception.EatingNotFoundException;
 import com.demo.countingcalories.exception.UserNotFoundException;
+import com.demo.countingcalories.model.dao.DishRepositoryDAO;
 import com.demo.countingcalories.model.dao.EatingRepositoryDAO;
 import com.demo.countingcalories.model.dao.UserRepositoryDAO;
 import com.demo.countingcalories.model.entity.Dish;
 import com.demo.countingcalories.model.entity.Eating;
 import com.demo.countingcalories.model.entity.User;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -22,10 +25,12 @@ public class EatingService {
 
     private final EatingRepositoryDAO eatingRepository;
     private final UserRepositoryDAO userRepository;
+    private final DishRepositoryDAO dishRepository;
 
-    public EatingService(EatingRepositoryDAO eatingRepository, UserRepositoryDAO userRepository) {
+    public EatingService(EatingRepositoryDAO eatingRepository, UserRepositoryDAO userRepository, DishRepositoryDAO dishRepository) {
         this.eatingRepository = eatingRepository;
         this.userRepository = userRepository;
+        this.dishRepository = dishRepository;
     }
 
     public Eating getEatingById(Long id) {
@@ -38,7 +43,10 @@ public class EatingService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
 
-        List<Eating> eatingList = eatingRepository.findByUserIdAndDate(userId, date);
+        LocalDateTime day_start = date.atStartOfDay();
+        LocalDateTime day_end = date.atTime(23, 59, 59);
+
+        List<Eating> eatingList = eatingRepository.findByUserIdAndDateBetween(userId, day_start, day_end);
 
         int totalCalories = 0;
 
@@ -51,13 +59,14 @@ public class EatingService {
         return new DailyReportDTO(eatingList, totalCalories, user.getDailyCalories());
     }
 
-
     public boolean checkDailyCaloriesByUserIdByDate(Long userId, LocalDate date) {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
 
-        List<Eating> eatingList = eatingRepository.findByUserIdAndDate(userId, date);
+        LocalDateTime day_start = date.atStartOfDay();
+        LocalDateTime day_end = date.atTime(23, 59, 59);
+        List<Eating> eatingList = eatingRepository.findByUserIdAndDateBetween(userId, day_start, day_end);
 
         int totalCalories = 0;
 
@@ -79,20 +88,12 @@ public class EatingService {
         return eatingRepository.findByUserId(userId, pageRequest);
     }
 
-    public Eating createEating(Eating eating) {
-        return eatingRepository.save(eating);
+    public Eating createEating(EatingAddUpdateDTO eatingDTO) {
+        return createAndFillEating(eatingDTO);
     }
 
-    public Eating editEating(Long id, Eating updatedDish) {
-
-        Eating eating = eatingRepository.findById(id)
-                .orElseThrow(() -> new EatingNotFoundException(id));
-
-        eating.setDate(updatedDish.getDate());
-        eating.setUser(updatedDish.getUser());
-        eating.setDishes(updatedDish.getDishes());
-
-        return eatingRepository.save(eating);
+    public Eating editEating(Long id, EatingAddUpdateDTO updatedEatingDTO) {
+        return findAndFillDish(id, updatedEatingDTO);
     }
 
     public void deleteEating(Long id) {
@@ -103,5 +104,41 @@ public class EatingService {
         eatingRepository.deleteById(id);
     }
 
+    private Eating fillEatingFromDTO(Eating eating, EatingAddUpdateDTO dto) {
+
+        User user = userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new UserNotFoundException(dto.getUserId()));
+
+        List<Dish> dishes = dishRepository.findAllById(dto.getDishesId());
+
+        if (dishes.size() != dto.getDishesId().size()) {
+            throw new EntityNotFoundException("One or more dishes not found");
+        }
+
+        eating.setDate(dto.getDate());
+        eating.setUser(user);
+
+        Eating savedEating = eatingRepository.save(eating);
+
+        savedEating.setDishes(dishes);
+        
+        return savedEating;
+
+    }
+
+    public Eating createAndFillEating(EatingAddUpdateDTO dto) {
+        Eating eating = new Eating();
+        fillEatingFromDTO(eating, dto);
+        return eatingRepository.save(eating);
+    }
+
+    public Eating findAndFillDish(Long id, EatingAddUpdateDTO dto) {
+
+        Eating eating = eatingRepository.findById(id)
+                .orElseThrow(() -> new EatingNotFoundException(id));
+
+        fillEatingFromDTO(eating, dto);
+        return eatingRepository.save(eating);
+    }
 
 }

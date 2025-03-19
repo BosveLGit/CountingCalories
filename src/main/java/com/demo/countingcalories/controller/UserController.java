@@ -1,5 +1,6 @@
 package com.demo.countingcalories.controller;
 
+import com.demo.countingcalories.dto.UserAddUpdateDTO;
 import com.demo.countingcalories.model.entity.User;
 import com.demo.countingcalories.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,15 +43,15 @@ public class UserController {
 
     @PostMapping("/add")
     @Operation(summary = "Создать пользователя", description = "Добавляет нового пользователя на основе предоставленных данных")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userService.createUser(user);
+    public ResponseEntity<User> createUser(@RequestBody UserAddUpdateDTO userDTO) {
+        User savedUser = userService.createUser(userDTO);
         return ResponseEntity.status(201).body(savedUser);
     }
 
     @PutMapping("/edit/{id}")
     @Operation(summary = "Редактировать пользователя", description = "Обновляет данные пользователя по указанному идентификатору")
-    public ResponseEntity<User> editUser(@PathVariable Long id, @RequestBody User user) {
-        User savedUser = userService.editUser(id, user);
+    public ResponseEntity<User> editUser(@PathVariable Long id, @RequestBody UserAddUpdateDTO  userDTO) {
+        User savedUser = userService.editUser(id, userDTO);
         return ResponseEntity.ok(savedUser);
     }
 
