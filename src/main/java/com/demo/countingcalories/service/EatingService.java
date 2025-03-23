@@ -97,15 +97,13 @@ public class EatingService {
         Eating savedEating = eatingRepository.save(eating);
 
         savedEating.setDishes(dishes);
-        
-        return savedEating;
 
+        return eatingRepository.save(savedEating);
     }
 
     public Eating createAndFillEating(EatingAddUpdateDTO dto) {
         Eating eating = new Eating();
-        fillEatingFromDTO(eating, dto);
-        return eatingRepository.save(eating);
+        return fillEatingFromDTO(eating, dto);
     }
 
     public Eating findAndFillDish(Long id, EatingAddUpdateDTO dto) {
@@ -113,8 +111,7 @@ public class EatingService {
         Eating eating = eatingRepository.findById(id)
                 .orElseThrow(() -> new EatingNotFoundException(id));
 
-        fillEatingFromDTO(eating, dto);
-        return eatingRepository.save(eating);
+        return fillEatingFromDTO(eating, dto);
     }
 
     public DailyCaloriesData getSumCaloriesByDate(Long userId, LocalDate date) {
